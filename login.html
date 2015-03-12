@@ -1,10 +1,53 @@
 <!DOCTYPE html>
 <html>
   <head>
-  	<meta charset = "UTF-8">
+    <script>
+    function login() {
+      var username = document.getElementById("userName").value;
+      var password = document.getElementById("passWord").value;
+
+      var httpRequest = new XMLHttpRequest();
+      var url = "http://web.engr.oregonstate.edu/~sibailaj/finalproject/src/loginhandler.php";
+      var success;
+
+      if (httpRequest) {
+        httpRequest.onreadystatechange = handle;
+        httpRequest.open('POST', url, true);
+        httpRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        httpRequest.send("username=" + username + "&" + "password=" + password);
+      }
+
+      function handle() {
+        if (httpRequest.readyState === 4) {
+          if (httpRequest.status === 200) {
+            document.getElementById('response').innerHTML = httpRequest.responseText;
+          } else {
+            //alert ("error");
+          }
+        } 
+      }
+    }
+    </script>
   	<title>Login</title>
   </head>
   <body>
-
+    <form>
+      Account Login
+      <br><br>
+      <div id="response"></div> 
+      <font color="red">*</font> Username:
+      <br>
+    	<input type="text" id="userName">
+    	<br><br>
+      <font color="red">*</font> Password:
+      <br>
+    	<input type="password" id="passWord">
+      <br>
+      <br>
+      <font color="red">*</font> Required Field
+      <br>
+      <input type="button" value="Submit" onclick="login()">
+    </form>
+  <a href="createaccount.php">Create New Account</a>
   </body>
 </html>
