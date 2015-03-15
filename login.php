@@ -1,4 +1,15 @@
-<!DOCTYPE html>
+<?php
+  
+  session_start();
+  ini_set('display_errors', 'On');
+
+  if (isset($_SESSION['login'])) {
+    header("Location: http://web.engr.oregonstate.edu/~sibailaj/finalproject/src/home.php", true);
+  }
+
+
+?>
+
 <html>
   <head>
     <script>
@@ -20,7 +31,12 @@
       function handle() {
         if (httpRequest.readyState === 4) {
           if (httpRequest.status === 200) {
-            document.getElementById('response').innerHTML = httpRequest.responseText;
+            if (httpRequest.responseText) {
+              document.getElementById('response').innerHTML = httpRequest.responseText;
+            } else {
+              location.reload();
+            }
+                        
           } else {
             //alert ("error");
           }
@@ -34,7 +50,7 @@
     <form>
       Account Login
       <br><br>
-      <div id="response"></div> 
+      <div id="response"></div>
       <font color="red">*</font> Username:
       <br>
     	<input type="text" id="userName">

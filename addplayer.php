@@ -1,5 +1,14 @@
 <?php
-	ini_set('display_errors', 'On');
+	session_start();
+  ini_set('display_errors', 'On');
+
+  if(!isset($_SESSION['login'])) {
+    $filePath = explode('/', $_SERVER['PHP_SELF'], -1);
+    $filePath = implode('/', $filePath);
+    $redirect = "http://" . $_SERVER['HTTP_HOST'] . $filePath;
+    header("Location: {$redirect}/login.php", true);
+    exit();
+  }
 
 	$mysqli = new mysqli("oniddb.cws.oregonstate.edu", "sibailaj-db", "j1nl10en0wr49WVv", "sibailaj-db");
 

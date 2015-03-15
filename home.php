@@ -1,3 +1,16 @@
+<?php
+  session_start();
+
+  if(!isset($_SESSION['login'])) {
+    $filePath = explode('/', $_SERVER['PHP_SELF'], -1);
+    $filePath = implode('/', $filePath);
+    $redirect = "http://" . $_SERVER['HTTP_HOST'] . $filePath;
+    header("Location: {$redirect}/login.php", true);
+    exit();
+  }
+
+?>
+
 <html>
   <head>
   	<meta charset = "UTF-8">
@@ -71,6 +84,10 @@
   	</script>
   </head>
   <body>
+<?php
+  echo "Welcome, " . $_SESSION['username'] . "!<br>";
+  echo "<a href='http://web.engr.oregonstate.edu/~sibailaj/finalproject/src/logout.php'>Logout</a>";
+?>
   <form>
   	Filter By:
   	<select id="filter">
