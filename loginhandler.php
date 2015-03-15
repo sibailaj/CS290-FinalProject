@@ -28,12 +28,8 @@
 	    if ($fetchResult === NULL) {
 	    	echo "<font color='red'>Error: Incorrect Username or Password.</font><br>";
 	    } else {
-	    	//echo "<font color='green'>Correct Username and Password.</font><br>";
 	    	$_SESSION['username'] = $usernameResult;
 	    	$_SESSION['login'] = true;
-	    	//$statement->close();
-	    	//header("Location: http://web.engr.oregonstate.edu/~sibailaj/finalproject/src/home.php", true);
-	    	//exit();
 	    }
 
 	    $statement->close(); 		

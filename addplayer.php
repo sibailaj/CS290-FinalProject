@@ -490,5 +490,8 @@
     <br><br>
     <button type="submit" name="playersubmit">Submit</button>
   </form>
+  <form action="http://web.engr.oregonstate.edu/~sibailaj/finalproject/src/home.php">
+    <input type="submit" value="Cancel">
+  </form>
   </body>
 </html>

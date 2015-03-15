@@ -25,7 +25,6 @@
   		} else {
   			orderBy = document.getElementsByName("orderby")[1].value;
   		}
-  		//var sortbutton = document.getElementById("sortbutton").value;
 
   		var httpRequest = new XMLHttpRequest();
       	var url = "http://web.engr.oregonstate.edu/~sibailaj/finalproject/src/displayresults.php";
@@ -51,16 +50,6 @@
   	function playerDetail(value) {
   		var playerID = value;
 
-  		/*
-  		for (var i in document.getElementsByName("detailbutton")) {
-  			if (document.getElementsByName("detailbutton")[i].checked) {
-  				playerID = document.getElementsByName("detailbutton")[i].value;
-  			}
-  		}
-  		*/
-
-  		//var playerID = document.getElementsByName("detailbutton").value;
-
   		var httpRequest = new XMLHttpRequest();
       	var url = "http://web.engr.oregonstate.edu/~sibailaj/finalproject/src/displayresults.php";
 
@@ -81,13 +70,43 @@
         	} 
       	}
   	}
+
+    function addFavorite(value) {
+      var playerID = value;
+      //var userName = $_SESSION['username'];
+
+      var httpRequest = new XMLHttpRequest();
+      var url = "http://web.engr.oregonstate.edu/~sibailaj/finalproject/src/displayresults.php";
+
+      if (httpRequest) {
+        httpRequest.onreadystatechange = handle;
+        httpRequest.open('POST', url, true);
+        httpRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        httpRequest.send("id=" + playerID + "&add=1");
+    }
+
+    function handle() {
+        if (httpRequest.readyState === 4) {
+          if (httpRequest.status === 200) {
+            document.getElementById('addplayerresponse').innerHTML = httpRequest.responseText;
+          } else {
+            //alert ("error");
+          }
+        } 
+      }
+    }
   	</script>
   </head>
   <body>
 <?php
   echo "Welcome, " . $_SESSION['username'] . "!<br>";
-  echo "<a href='http://web.engr.oregonstate.edu/~sibailaj/finalproject/src/logout.php'>Logout</a>";
+  echo "<a href='http://web.engr.oregonstate.edu/~sibailaj/finalproject/src/logout.php'>Logout</a>&nbsp;&nbsp;";
+  echo "<a href='http://web.engr.oregonstate.edu/~sibailaj/finalproject/src/favorites.php'>Favorites</a>";
 ?>
+  <br><br>
+  <a href='http://web.engr.oregonstate.edu/~sibailaj/finalproject/src/addplayer.php'>Add Player</a>
+  <br><br>
+  <div id="addplayerresponse"></div>
   <form>
   	Filter By:
   	<select id="filter">
