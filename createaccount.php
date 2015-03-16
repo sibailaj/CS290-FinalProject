@@ -8,7 +8,23 @@ if ($mysqli->connect_errno) {
 } else {
 
 }
+?>
 
+<html>
+  <head>
+  	<meta charset = "UTF-8">
+  	<title>Create Account</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+  <form action="" method="post">
+  	<h2>Create Your Account</h2>
+    <div class="loginbox2">
+    Enter a Username and Password to Create Your Account
+    <br><br>
+    <font color="red">*</font> Required Field
+    <br>
+<?php
 if (isset($_POST['accountSubmit'])) {
   if (empty($_POST['userName']) || (empty($_POST['passWord']))) {
     if (empty($_POST['userName'])) {
@@ -24,22 +40,16 @@ if (isset($_POST['accountSubmit'])) {
     $result = $statement->execute();
     if ($result == false) {
       echo "<font color='red'>Error: Username already taken.</font><br>";
+    } else {
+      echo "<br><font color='green'>Account Successfully Created! 
+      Click <a href='http://web.engr.oregonstate.edu/~sibailaj/finalproject/src/login.php'>here</a> to login!</font><br>";
     }
     $statement->close();    
   }
 }
 
-?>
-
-<html>
-  <head>
-  	<meta charset = "UTF-8">
-  	<title>Create Account</title>
-  </head>
-  <body>
-  <form action="" method="post">
-  	Create Your Account
-    <br><br>
+?>    
+    <br>
     <font color="red">*</font> New Username:
     <br>
   	<input type="text" name="userName">
@@ -49,9 +59,12 @@ if (isset($_POST['accountSubmit'])) {
   	<input type="password" name="passWord">
     <br>
     <br>
-    <font color="red">*</font> Required Field
-    <br>
-    <button type="submit" name="accountSubmit">Submit</button>
+    <button type="submit" name="accountSubmit" class="submit">Submit</button>
   </form>
+  <form action="http://web.engr.oregonstate.edu/~sibailaj/finalproject/src/login.php">
+    <br>
+    <input type="submit" value="Cancel" class="submit">
+  </form>
+  </div>
   </body>
 </html>

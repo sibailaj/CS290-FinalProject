@@ -45,11 +45,13 @@
     }
     </script>
   	<title>Login</title>
+    <link rel="stylesheet" href="style.css">
   </head>
   <body>
+    <h1>Dynasty Rookie Database</h1>
+    <div class="loginbox">
     <form>
-      Account Login
-      <br><br>
+      <div class="loginheader">Account Login</div>
       <div id="response"></div>
       <font color="red">*</font> Username:
       <br>
@@ -62,8 +64,11 @@
       <br>
       <font color="red">*</font> Required Field
       <br>
-      <input type="button" value="Submit" onclick="login()">
+      <input type="button" value="Submit" onclick="login()" class="submit">
     </form>
-  <a href="createaccount.php">Create New Account</a>
+    <a href="createaccount.php">Create New Account</a>
+    </div>
+    <p>This website is a database representing the 2015 NFL Skill Position Rookies that are entering this year’s NFL Draft. The skill positions include draft eligible quarterbacks, running backs, wide receivers and tight ends. These positions are critical to fantasy football players in a keeper/dynasty setting as promising rookies can carry more long-term upside than older veteran players. Note: Not all eligible rookies have been entered into the database.</p>
+    <p>Please Login or Create a New Account to access the site!</p>
   </body>
 </html>

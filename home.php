@@ -15,6 +15,7 @@
   <head>
   	<meta charset = "UTF-8">
   	<title>Home</title>
+    <link rel="stylesheet" href="style.css">
   	<script>
   	function display() {
   		var filterBy = document.getElementById("filter").value;
@@ -98,11 +99,19 @@
   	</script>
   </head>
   <body>
+  <h2>Database Home</h2>
+  <div class="pagestyle">
+    Welcome to the Database Home page! Perform a search using the below criteria. Click the Detail button
+    to get additional details on the player. Click the Favorite button to add the player to your account's
+    Favorites List.
+    <div class="usermenu">
 <?php
   echo "Welcome, " . $_SESSION['username'] . "!<br>";
-  echo "<a href='http://web.engr.oregonstate.edu/~sibailaj/finalproject/src/logout.php'>Logout</a>&nbsp;&nbsp;";
-  echo "<a href='http://web.engr.oregonstate.edu/~sibailaj/finalproject/src/favorites.php'>Favorites</a>";
+  echo "<a href='http://web.engr.oregonstate.edu/~sibailaj/finalproject/src/favorites.php'>Favorites</a>&nbsp;&nbsp;";
+  echo "<a href='http://web.engr.oregonstate.edu/~sibailaj/finalproject/src/logout.php'>Logout</a>";
+
 ?>
+    </div>
   <br><br>
   <a href='http://web.engr.oregonstate.edu/~sibailaj/finalproject/src/addplayer.php'>Add Player</a>
   <br><br>
@@ -133,10 +142,11 @@
   	</select>
   	<input type="radio" name="orderby" value="" checked="checked">Ascending</input>
   	<input type="radio" name="orderby" value="DESC">Decending</input>
-  	<input type="button" id="sortbutton" value="Submit" onclick="display()">
+  	<input type="button" id="sortbutton" value="Submit" onclick="display()" class="submit">
   </form>
   <div id="response"></div>
   <br><br>
   <div id="detailresponse"></div>
+  </div>
   </body>
 </html>

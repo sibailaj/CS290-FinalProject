@@ -19,14 +19,14 @@
 		$playerTableStatement = $mysqli->prepare($selection);
 		$playerTableStatement->execute();
 		$playerTableStatement->bind_result($id, $fname, $lname, $position, $height, $weight, $birthdate, $location,$mascot, $forty, $threecone, $shuttle, $vertical, $broad, $bench, $rotoworld);
-		echo "<table><tr><td>First Name<td>Last Name<td>Position<td>Height<td>Weight<td>Birthdate<td>College<td>
+		echo "<table class='center'><tr><td>First Name<td>Last Name<td>Position<td>Height<td>Weight<td>Birthdate<td>College<td>
 		40 Yard Dash<td>3-Cone Time<td>Shuttle<td>Vertical<td>Broad Jump<td>Bench Press<td>Rotoworld Link<td>Detail<td>Favorite";
 		while($playerTableStatement->fetch()) {
 			echo "<tr><td>" . $fname . "<td>" . $lname . "<td>" . $position . "<td>" . $height . "<td>" .
 			$weight . "<td>" . $birthdate . "<td>" . $location . " " . $mascot . "<td>" . $forty . "<td>" .
 			$threecone . "<td>" . $shuttle . "<td>" . $vertical . "<td>" . $broad . "<td>" . $bench . "<td>" .
-			"<a href='" . $rotoworld . "'>Link</a>" . "<td>" . "<button name='detailbutton' onclick='playerDetail(this.value)' value='" . $id . "'>Detail</button>"
-			. "<td>" . "<button name='favoritebutton' onclick='addFavorite(this.value)' value='" . $id . "'>Favorite</button>";
+			"<a href='" . $rotoworld . "'>Link</a>" . "<td>" . "<button name='detailbutton'class='submit' onclick='playerDetail(this.value)' value='" . $id . "'>Detail</button>"
+			. "<td>" . "<button name='favoritebutton'class='submit' onclick='addFavorite(this.value)' value='" . $id . "'>Favorite</button>";
 		}
 		echo "</table>";
 		$playerTableStatement->close();			
@@ -35,15 +35,23 @@
 	//Player Details
 	//Awards
 	if (isset($_POST['id']) && !isset($_POST['add'])) {
-		$playerAwardsStatement = $mysqli->prepare("SELECT P.fname, P.lname, PA.year, A.award FROM fp_awards A INNER JOIN fp_players_awards PA
+		//Get Name
+		$nameStatement = $mysqli->prepare("SELECT fname, lname FROM fp_players WHERE id = ?");
+		$nameStatement->bind_param('i', $_POST['id']);
+		$nameStatement->execute();
+		$nameStatement->bind_result($firstName, $lastName);
+		$nameStatement->fetch();
+		$nameStatement->close();
+
+		$playerAwardsStatement = $mysqli->prepare("SELECT PA.year, A.award FROM fp_awards A INNER JOIN fp_players_awards PA
 			ON A.id = PA.aid INNER JOIN fp_players P ON P.id = PA.pid WHERE P.id = ?");
 		$playerAwardsStatement->bind_param("i", $_POST['id']);
 		$playerAwardsStatement->execute();
-		$playerAwardsResult = $playerAwardsStatement->bind_result($firstName, $lastName, $year, $award);
-		$playerAwardsStatement->fetch();
-		echo "<h1>" . $firstName . " " . $lastName . " Player Detail:</h1><br><br>";
-		echo "<h2>Awards: </h2><br>";
-		if ($playerAwardsResult) {
+		$playerAwardsStatement->bind_result($year, $award);
+		$playerAwardsResult = $playerAwardsStatement->fetch();
+		echo "<h2>" . $firstName . " " . $lastName . " Player Detail:</h2>";
+		echo "<h3>Awards: </h3>";
+		if ($playerAwardsResult !== NULL) {
 			echo $year . " " . $award . "<br>";
 			while($playerAwardsStatement->fetch()) {
 				echo $year . " " . $award . "<br>";
@@ -59,7 +67,7 @@
 		$playerRedflagStatement->bind_param("i", $_POST['id']);
 		$playerRedflagStatement->execute();
 		$playerRedflagStatement->bind_result($redflag);
-		echo "<h2>Red Flags:</h2><br>";
+		echo "<h3>Red Flags:</h3>";
 		$playerRedflagResult = $playerRedflagStatement->fetch();
 		if ($playerRedflagResult !== NULL) {
 			echo $redflag . "<br>";
@@ -77,7 +85,7 @@
 		$playerLandingspotStatement->bind_param("i", $_POST['id']);
 		$playerLandingspotStatement->execute();
 		$playerLandingspotStatement->bind_result($landingspot);
-		echo "<h2>Potential Landing Spots:</h2><br>";
+		echo "<h3>Potential Landing Spots:</h3>";
 		$playerLandingspotResult = $playerLandingspotStatement->fetch();
 		if ($playerLandingspotResult !== NULL) {
 			echo $landingspot . "<br>";

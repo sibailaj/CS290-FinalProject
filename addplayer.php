@@ -110,7 +110,12 @@
         ?, ?, ?, ?, ?, ?)");
       $playerStatement->bind_param("ssssisiddddiis", $_POST['firstname'], $_POST['lastname'], $_POST['position'],
         $height, $_POST['weight'], $birthdate, $collegeID, $_POST['forty'], $_POST['threecone'], $_POST['shuttle'], $_POST['vertical'], $_POST['broad'], $_POST['bench'], $_POST['rotoworld']);
-      $playerStatement->execute();
+      $verifyPlayerResult = $playerStatement->execute();
+      if ($verifyPlayerResult) {
+        echo "<font color='green'>Player Successfully Added.</font><br>";
+      } else {
+        echo "<font color='red'>Error: Player Already Exists.</font><br>";
+      }
       $playerStatement->close();
 
       //Write to Awards and Players Awards Tables
@@ -241,10 +246,12 @@
   <head>
   	<meta charset = "UTF-8">
   	<title>Add Player</title>
+    <link rel="stylesheet" href="style.css">
   </head>
   <body>
+  <div class='pagestyleleft'>
   <form action="" method="post">
-    Add Player
+    <h2>Add Player</h2>
     <br>
     <font color="red">*</font> Required Field
     <br>
@@ -488,10 +495,11 @@
     <td><input type="checkbox" name="landingspot[]" value="Washington Redskins">WAS
     </table>
     <br><br>
-    <button type="submit" name="playersubmit">Submit</button>
+    <button type="submit" class="submit" name="playersubmit">Submit</button>
   </form>
   <form action="http://web.engr.oregonstate.edu/~sibailaj/finalproject/src/home.php">
-    <input type="submit" value="Cancel">
+    <input type="submit" class="submit" value="Cancel">
   </form>
+  </div>
   </body>
 </html>

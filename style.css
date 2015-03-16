@@ -1,0 +1,120 @@
+h1{
+	color: #0B0B61;
+	font-family: arial, sans-serif;
+	font-size: 48px;
+	font-weight: bold;
+	margin-top: 0px;
+	margin-bottom: 50px;
+	text-align: center;
+}
+
+h2{
+	color: #0B0B61;
+	font-family: arial, sans-serif;
+	font-size: 36px;
+	font-weight: bold;
+	margin-top: 0px;
+	margin-bottom: 25px;
+	text-align: center;
+}
+
+h3{
+	color: #0B0B61;
+	font-family: arial, sans-serif;
+	font-size: 16px;
+	font-weight: bold;
+	margin-top: 10px;
+	margin-bottom: 5px;
+	text-align: center;
+}
+
+p{
+	font-family: arial, sans-serif;
+	margin-left: 250px;
+	margin-right: 250px;
+}
+
+.loginheader{
+	color: #0B0B61;
+	font-family: arial, sans-serif;
+	font-size: 16px;
+	font-weight: bold;
+	margin-top: 0px;
+	margin-bottom: 5px;
+	text-align: left;
+}
+
+.submit {
+	background-color: #0B0B61;
+	color: #FFFFFF;
+	font-family: arial, sans-serif;
+	border-radius:6px;
+	cursor: pointer;
+}
+
+.submit:hover {
+	background: #2E64FE;
+}
+
+.loginbox{
+	float:left;
+	font-family: arial, sans-serif;
+	color: #0B0B61;
+	margin-left: 25px;
+}
+
+.loginbox2{
+	text-align: center;
+	font-family: arial, sans-serif;
+	color: #0B0B61;
+}
+
+.floatright {
+	float:right;
+}
+
+.pagestyle {
+	text-align: center;
+	font-family: arial, sans-serif;
+	color: #0B0B61;	
+}
+
+.pagestyleleft {
+	text-align: left;
+	font-family: arial, sans-serif;
+	color: #0B0B61;
+	margin-left: 25px;
+}
+
+.usermenu {
+	text-align: right;
+	font-size: 16px;
+}
+
+table {
+	border: 1px solid #0B0B61;
+	color: #0B0B61;
+
+}
+
+td {
+	border: 1px solid #0B0B61;	
+}
+
+th {
+	border: 1px solid #0B0B61;	
+}
+
+table.center {
+	margin-left:auto;
+	margin-right:auto;
+	text-align: center;
+}
+
+tr:nth-of-type(odd) {
+	background-color: #FFFFFF;
+}
+
+tr:nth-of-type(even) {
+	background-color: #CED8F6;
+}
